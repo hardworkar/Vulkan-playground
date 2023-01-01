@@ -57,17 +57,17 @@ private:
         for (const auto& extension : extensions) {
             std::cout << '\t' << extension.extensionName << '\n';
         }
-        
+
         // check whether all exts are supported
         for (uint32_t requiredExtIdx = 0; requiredExtIdx < glfwExtensionCount; ++requiredExtIdx) {
             const char* requiredExtensionName = glfwExtensions[requiredExtIdx];
             const auto found = std::find_if(extensions.begin(), extensions.end(),
                 [&requiredExtensionName](const VkExtensionProperties& extension) -> bool {
                     return !strcmp(extension.extensionName, requiredExtensionName);
-				}
+                }
             );
             if (found == std::end(extensions)) {
-                throw std::runtime_error(glfwExtensions[requiredExtIdx] + std::string{" is not supported!"});
+                throw std::runtime_error(glfwExtensions[requiredExtIdx] + std::string{ " is not supported!" });
             }
         }
 
